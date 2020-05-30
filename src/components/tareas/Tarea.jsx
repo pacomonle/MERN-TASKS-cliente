@@ -23,7 +23,7 @@ const Tarea = ({ tarea }) => {
     } else {
       tarea.estado = true;
     }
-    // actualizarTarea(tarea);
+    actualizarTarea(tarea);
   };
 
  // Función que se ejecuta cuando el usuario presiona el btn de eliminar tarea
@@ -33,10 +33,9 @@ const Tarea = ({ tarea }) => {
 }
 
 
-
   // Agrega una tarea actual cuando el usuario desea editarla
   const seleccionarTarea = (tarea) => {
-   // guardarTareaActual(tarea);
+    guardarTareaActual(tarea);
   };
 
   return (

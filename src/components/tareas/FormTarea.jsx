@@ -19,6 +19,17 @@ const FormTarea = () => {
     limpiarTarea,
   } = tareasContext;
 
+   // Effect que detecta si hay una tarea seleccionada
+   useEffect(() => {
+    if(tareaseleccionada !== null) {
+        guardarTarea(tareaseleccionada)
+    } else {
+        guardarTarea({
+            nombre: ''
+        })
+    }
+}, [ tareaseleccionada ]); 
+
   // State del formulario
   const [tarea, guardarTarea] = useState({
     nombre: "",
@@ -51,23 +62,23 @@ const FormTarea = () => {
     }
 
     // Si es edición o si es nueva tarea
-    //  if(tareaseleccionada === null ) {
+     if(tareaseleccionada === null ) {
     // agregar la nueva tarea al state de tareas
     tarea.proyectoId = proyectoActual.id;
     tarea.estado = false;
     agregarTarea(tarea);
-    //  } else {
+     } else {
     // actualizar tarea existente
-    //actualizarTarea(tarea);
+      actualizarTarea(tarea);
     // Elimina tareaseleccionada del state
-    //limpiarTarea();
-
+       limpiarTarea();
+     }
     // Obtener y filtrar las tareas del proyecto actual
     obtenerTareas(proyectoActual.id);
 
     // reiniciar el form
     guardarTarea({
-      nombre: "",
+      nombre: ""
     });
   };
 
@@ -89,7 +100,7 @@ const FormTarea = () => {
           <input
             type="submit"
             className="btn btn-primario btn-submit btn-block"
-            value={"Agregar Tarea"}
+            value={tareaseleccionada ? 'Editar Tarea' : 'Agregar Tarea'}
           />
         </div>
       </form>
